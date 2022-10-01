@@ -5,7 +5,7 @@ x = knapsack_objects[1:8,]
 W = 3500
 
 knapsack_dynamic <- function(x, W) {
-#   #Check input
+#Check input
   if (!is.data.frame(x)) {stop("x must be data frame")}
   if (any(x<0)) {stop("x must be positive")}
   if (!length(x)==2) {stop("x must have two columns")}
@@ -18,7 +18,7 @@ knapsack_dynamic <- function(x, W) {
   v=x$v
   w=x$w
   
-  # for each specific item we step by step increase the knapsack's capacity, and compare the weights
+# for each specific item we step by step increase the knapsack's capacity, and compare the weights
   for (i in 1:n) {
     for (j in 0:W) {
       if (w[i]>j) {M[i+1, j+1]=M[i,j+1]
@@ -27,6 +27,8 @@ knapsack_dynamic <- function(x, W) {
       }
     }
   }
+  
+#looking for the elements from the sum
   j=j+1
   i<- which.max(M[,j])
   k=1
